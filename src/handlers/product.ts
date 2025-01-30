@@ -14,6 +14,18 @@ export const getProducts = async (req: Request, res: Response): Promise<void> =>
     }
 }
 
+export const getProductById = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        const product = await Product.findByPk(id)
+        
+        res.json({ data: product })
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
 export const createProduct = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const product = await Product.create(req.body)

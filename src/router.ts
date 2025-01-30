@@ -1,12 +1,19 @@
 import { Router } from "express"
-import { body } from "express-validator"
-import { createProduct, getProducts } from "./handlers/product"
+import { body, param } from "express-validator"
+import { createProduct, getProductById, getProducts } from "./handlers/product"
 import { hadleInputErrors } from "./middleware"
 
 const router = Router()
 
 //Routing
 router.get('/', getProducts)
+router.get('/:id',
+    //validación
+    param('id')
+        .isInt().withMessage('ID no válido.'),
+    hadleInputErrors,
+    getProductById
+)
 
 router.post('/',
     //Validación
@@ -16,7 +23,7 @@ router.post('/',
         .isNumeric().withMessage('Valor no válido.')
         .notEmpty().withMessage('El precio del Producto no puede ir vacio.')
         .custom(value => value > 0).withMessage('Precio no válido.'),
-        hadleInputErrors,
+    hadleInputErrors,
     createProduct
 )
 
