@@ -52,5 +52,4 @@ describe('POST /api/products', () => {
         expect(response.body).not.toHaveProperty('errors')
     })
 
-
 })
