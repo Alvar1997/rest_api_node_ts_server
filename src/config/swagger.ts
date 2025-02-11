@@ -1,8 +1,8 @@
 import swaggerJSDoc from "swagger-jsdoc";
 
-const options: swaggerJSDoc.Options = {
+const options : swaggerJSDoc.Options = {
     swaggerDefinition: {
-        opneapi: "3.0.0",
+        openapi: "3.0.0",
         tags: [
             {
                 name: 'Products',
